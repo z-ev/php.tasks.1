@@ -1,0 +1,13 @@
+.idea
+.vscode
+.vagrant
+.phpstorm.meta.php
+_ide_helper.php
+
+/app/config/db.php
+
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log

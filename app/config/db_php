@@ -1,0 +1,8 @@
+<?php
+
+return [
+	'host' => 'localhost',
+	'name' => 'XXX',
+	'user' => 'XXX',
+	'password' => 'XXX',
+];
