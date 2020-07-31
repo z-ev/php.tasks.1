@@ -1,7 +1,7 @@
-#Тестовое задание для hr@work5.ru
+# Тестовое задание для hr@work5.ru
 PHP MVC
 
-![Иллюстрация к проекту](https://github.com/evgeniizab/php.mvc.test1/public/img/screen1.png)
+![Иллюстрация к проекту](https://raw.githubusercontent.com/evgeniizab/php.mvc.test1/master/public/img/screen1.png)
 
 
 ## Getting Started 
@@ -32,7 +32,7 @@ return [
 ```sh
 mysql -u USERNAME -p -h localhost BASENAME < base.sql 
 ```
-###Задание
+### Задание
 Проект выполнялся в качестве тестового задания.
 * PHP
 ```sh
