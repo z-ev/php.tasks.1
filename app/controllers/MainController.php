@@ -10,7 +10,7 @@ class MainController extends Controller {
 	public function indexAction() {
 
         $vars = $this->model->getAllOrders();
-   		$this->view->render('Home page', $vars);
+   		$this->view->render('Добро пожаловать', $vars);
 	}
 
 }

@@ -1,6 +1,6 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="/">Главная</a></li>
     </ol>
 </nav>
 
@@ -8,25 +8,25 @@
 
     <div class="row">
         <div class="col-md-8">
-            <h1>Hello</h1>
-            <p class="lead">It's simple MVC app for work5.ru</p>
-            <p><small>Пользователь: user1 пароль:123</small></p>
+            <h1>Здравствуйте</h1>
+            <p class="lead">Это тестовое задание для work5.ru</p>
+            <p><small>Пользователь: user1 пароль:123<br>Пароль одинаковый для всех пользователей</small></p>
         </div>
         <div class="col-md-4">
 
             <div class="panel panel-default">
                 <div class="panel-body">
             <?php if (!app\models\Account::isAuthorized()): ?>
-                <h3>Авторизуйтесь или создайте пользователя</h3>
+                <p class="text-center">Авторизуйтесь или создайте пользователя</p>
                     <div class="form-group">
-                <a class="btn btn-lg btn-primary btn-block " href="/account/login" role="button">Sign In</a>
+                <a class="btn btn-md btn-primary btn-block" href="/account/login" role="button">Войти</a>
                     </div>
                     <div class="form-group">
-                        <a class="btn btn-lg btn-primary btn-block" href="/account/register" role="button">Sign Up</a>
+                        <a class="btn btn-md btn-primary btn-block" href="/account/register" role="button">Регистрация</a>
                     </div>
                     <?php else: ?>
                 <p>Здравствуйте. Вы можете войти в Ваш личный кабинет!</p>
-                <p><a class="btn btn-lg btn-success" href="/account/cabinet/" role="button">Личный кабинет</a></p>
+                <p><a class="btn btn-md btn-primary btn-block" href="/account/cabinet/" role="button">Личный кабинет</a></p>
 
             <?php endif; ?>
                 </div>
