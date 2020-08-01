@@ -23,29 +23,27 @@ class AccountController extends Controller {
                 }
             }
 
-            if (isset($_POST["act"])) {$this->model->logout();header( 'Location: /account/login', true, 301 );}
+            if (isset($_POST["act"])) {if ($this->model->logout()) {setcookie("sid", "");}}
 
-            isset($_POST["user_login"]) ? $user_l = $_POST['user_login'] : $user_l = '';
-            isset($_POST["user_password"]) ? $user_p = $_POST['user_password'] : $user_p = '';
-            isset($_POST["user_r"]) ? $user_r = $_POST['user_r'] : $user_r = '';
 
-            $user_login = $this->model->authorize($user_l, $user_p, $user_r);
+            isset($_POST["user_login"]) ? $user_l = htmlspecialchars($_POST['user_login']) : $user_l = '';
+            if (isset($_POST["user_password"])) {$user_p = htmlspecialchars($_POST['user_password']); } else {$user_p = '';}
+            isset($_POST["user_r"]) ? $user_r = htmlspecialchars($_POST['user_r']) : $user_r = '';
+
+            $user_login = $this->model->authorize($user_l, $user_p);
+
 
             if ($user_login) {
-                $messages = '<div class="alert alert-success" role="alert">Добро пожаловать!</div>';
+                $messages .= '<div class="alert alert-success" role="alert">Добро пожаловать!</div>';
                 header( 'Location: /account/cabinet', true, 301 );
-            } else
-
-                {$messages = '<div class="alert alert-danger" role="alert">Не верный логин или пароль</div>';}
+            } else {$messages .= '<div class="alert alert-danger" role="alert">Не верный логин или пароль</div>';}
 
             $vars = [
                 'messages' => $messages,
                 'login' => $user_l,
             ];
 
-
             $this->view->render('login', $vars);
-
 
         } else {
 
@@ -68,9 +66,9 @@ class AccountController extends Controller {
 	        $errors = false;
             $messages = '';
 
-            isset($_POST["user_login"]) ? $user_l = $_POST['user_login'] : $user_l = '';
-            isset($_POST["user_email"]) ? $user_e = $_POST['user_email'] : $user_e = '';
-            isset($_POST["user_password"]) ? $user_p = $_POST['user_password'] : $user_p = '';
+            isset($_POST["user_login"]) ? $user_l = htmlspecialchars($_POST['user_login']) : $user_l = '';
+            isset($_POST["user_email"]) ? $user_e = htmlspecialchars($_POST['user_email']) : $user_e = '';
+            if (isset($_POST["user_password"])) { $user_p = htmlspecialchars($_POST['user_password']); } else {$user_p = '';}
 
             $check_login = $this->model->checkLogin($user_l);
             $check_email = $this->model->checkEmail($user_e);
@@ -84,7 +82,8 @@ class AccountController extends Controller {
             };
 
             if ($reg_user) {$messages = '<div class="alert alert-success" role="alert">Пользователь создан</div>';
-               /* foreach ($reg_user as $key=>$param) {
+               if ($user_login = $this->model->authorize($user_l, $user_p)) {header( 'Location: /account/cabinet', true, 301 );}
+              /*     foreach ($reg_user as $key=>$param) {
                     $messages .= '<br>'.$key. ' '.$param.'<br>';
                 } */
 
@@ -125,6 +124,8 @@ class AccountController extends Controller {
         } else {$user_info='';}
         $dbl_emails = $this->model->getDblEmails();
         $orders_all = $this->model->getAllOrders();
+        $users_all = $this->model->getAllUsers();
+
         $users0 = $this->model->getUsers0();
         $users2 = $this->model->getUsers2();
 
@@ -132,6 +133,7 @@ class AccountController extends Controller {
             'user_info' => $user_info,
             'dbl_emails' => $dbl_emails,
             'orders_all' => $orders_all,
+            'users_all' => $users_all,
             'users0' => $users0,
             'users2' => $users2,
         ];
