@@ -189,8 +189,7 @@ class Account extends Model
     }
     /** Все заказы */
     public function getAllOrders() {
-        $result = $this->db->row('
-            SELECT login,email, orders.price FROM users LEFT JOIN orders ON (orders.user_id = users.id) GROUP BY login, email, orders.price HAVING COUNT(orders.user_id) >= 1');
+        $result = $this->db->row('SELECT login,email,fio, orders.price FROM users LEFT JOIN orders ON (orders.user_id = users.id) GROUP BY login, email, fio, orders.price HAVING COUNT(orders.user_id) >= 1');
         return $result;
     }
 

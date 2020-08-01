@@ -56,7 +56,7 @@ class AccountController extends Controller {
                 'email' => '',
                 'password' => '',
             ];
-		$this->view->render('Login', $vars);}
+		$this->view->render('Вход', $vars);}
 	}
 
 
@@ -84,9 +84,9 @@ class AccountController extends Controller {
             };
 
             if ($reg_user) {$messages = '<div class="alert alert-success" role="alert">Пользователь создан</div>';
-                foreach ($reg_user as $key=>$param) {
+               /* foreach ($reg_user as $key=>$param) {
                     $messages .= '<br>'.$key. ' '.$param.'<br>';
-                }
+                } */
 
 
             }
@@ -98,7 +98,7 @@ class AccountController extends Controller {
                 'password' => $user_p,
             ];
 
-            $this->view->render('Reg', $vars);
+            $this->view->render('Регистрация', $vars);
         } else {
             $vars = [
                 'messages' => '',
@@ -106,7 +106,7 @@ class AccountController extends Controller {
                 'email' => '',
                 'password' => '',
             ];
-            $this->view->render('Reg', $vars);
+            $this->view->render('Регистрация', $vars);
         }
 
 
@@ -135,7 +135,7 @@ class AccountController extends Controller {
             'users0' => $users0,
             'users2' => $users2,
         ];
-        $this->view->render('Cart', $vars);
+        $this->view->render('Личный кабинет', $vars);
 
     }
 
