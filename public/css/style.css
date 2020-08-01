@@ -9,9 +9,21 @@ body {
     background-size: cover;
 }
 .container {
-    background-color:rgba(255,255,255,0.5);
+    background-color:rgba(255,255,255,0.7);
     border-radius: 8px;
 }
 .jumbotron {
     background-color: rgba(255, 255, 255, 0.8) !important;
+}
+.mt-2 {
+    margin-top:20px;
+}
+.mb-2 {
+    margin-bottom:20px;
+}
+.mb-6 {
+    margin-bottom:60px;
+}
+a:hover {
+    text-decoration: none !important;
 }
