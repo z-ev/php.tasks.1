@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<div class="container mt-6">
+<div class="container bm-t-6 ">
     <div class="header clearfix">
         <nav class="mt-2 navbar">
             <h3><a href="">

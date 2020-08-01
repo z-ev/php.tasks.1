@@ -27,6 +27,12 @@ body {
 .mb-6 {
     margin-bottom:60px;
 }
+
+.bm-t-6 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
 a:hover {
     text-decoration: none !important;
 }
