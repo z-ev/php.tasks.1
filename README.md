@@ -1,7 +1,7 @@
 # Тестовое задание для hr@work5.ru
 PHP MVC
 
-![Иллюстрация к проекту](https://raw.githubusercontent.com/evgeniizab/php.mvc.test1/master/public/img/screen2.png)
+![Иллюстрация к проекту](https://raw.githubusercontent.com/evgeniizab/php.mvc.test1/master/public/img/screen3.png)
 
 
 ## Getting Started 
