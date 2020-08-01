@@ -7,11 +7,12 @@ use app\core\Model;
 class Account extends Model
 {
 
+
     public function changePass($pass)
     {
         $pass = $this->passwordHash($pass);
 
-        $query = 'UPDATE `users` SET `password`='.$pass["hash"].', `salt`='.$pass["salt"].' WHERE id='.$_SESSION["user_id"];
+        $query = 'UPDATE `users` SET `password`="'.$pass["hash"].'", `salt`="'.$pass["salt"].'" WHERE id='.$_SESSION["user_id"];
         $update_pass = $this->db->query($query);
 
         if ($update_pass)  {return true;} else {return false;}
@@ -37,14 +38,21 @@ class Account extends Model
 
         $query = "insert into users (login, email, password, salt) values (:login, :email, :password, :salt)";
 
-        $hashes = $this->passwordHash($user_p);
+        $user_exists = $this->getSalt($user_l);
+
+        if ($user_exists) {
+            throw new \Exception("User exists: " . $user_l, 1);
+        }
+
+        $haz = $this->passwordHash($user_p);
 
         $params = [
                 'login' => $user_l,
                 'email' => $user_e,
-                'password' => $hashes['hash'],
-                'salt' => $hashes['salt'],
+                'password' => $haz['hash'],
+                'salt' => $haz['salt'],
         ];
+
 
         $create_user = $this->db->query($query, $params);
         if ($create_user) { return $params;} else { return $params;}
@@ -52,15 +60,15 @@ class Account extends Model
 
     public function getSalt($login)
     {
-        $query = "select salt from users where login = :login limit 1";
+        $query = 'select salt from `users` where `login` = "'.$login.'" limit 1';
+        $get_salt = $this->db->column($query);
+        //$get_salt = $get_salt->fetch();
 
-        $params = [
-               "login" => $login,
-        ];
+        if (!$get_salt) {
+            return false;
+        }
 
-        $get_salt = $this->db->query($query, $params);
-        $get_salt = $get_salt->fetch();
-        if ($get_salt) { return $get_salt["salt"];} else { return false;}
+        return $get_salt;
 
     }
 
@@ -76,11 +84,10 @@ class Account extends Model
         return array('hash' => $hash, 'salt' => $salt);
     }
 
-    public function authorize($login, $password, $remember = false)
+    public function authorize($username, $password, $remember = false)
     {
-        $query = "select id, login from users where login = :login and password = :password limit 1";
 
-        $salt = $this->getSalt($login);
+        $salt = $this->getSalt($username);
 
         if (!$salt) {
             return false;
@@ -88,23 +95,28 @@ class Account extends Model
 
         $hashes = $this->passwordHash($password, $salt);
 
-
+        $query = 'select id, login, fio from users where login = :login and password = :password limit 1';
         $params = [
-                "login" => $login,
-                "password" => $hashes['hash'],
-            ];
+            'login' => $username,
+            'password' => $hashes['hash'],
+           ];
 
         $check_user = $this->db->query($query, $params);
+
         $this->user = $check_user->fetch();
+
         if (!$this->user) {
             $this->is_authorized = false;
         } else {
             $this->is_authorized = true;
             $this->user_id = $this->user['id'];
+            $this->user_g = $this->user['user_g'];
             $this->saveSession($remember);
         }
 
         return $this->is_authorized;
+
+
     }
 
     public function saveSession($remember = false, $http_only = true, $days = 7)
@@ -137,6 +149,7 @@ class Account extends Model
         if (!empty($_SESSION["user_id"])) {
             unset($_SESSION["user_id"]);
         }
+
     }
 
     public function changeFio($fio)
@@ -195,6 +208,11 @@ class Account extends Model
 
 
 
+    /** Все пользователи */
+    public function getAllUsers() {
+        $result = $this->db->row('SELECT login, email,fio FROM users ');
+        return $result;
+    }
 
 
 

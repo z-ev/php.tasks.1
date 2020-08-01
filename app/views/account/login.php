@@ -36,8 +36,8 @@ if ($vars['login']) { $login = $vars['login']; }
         <input type="text" id="inputLogin" class="form-control" name="user_login" placeholder="Логин" required autofocus value="<?=$login?>">
         </div>
         <div class="form-group">
-        <label for="inputPassword" class="sr-only mt-2" name="user_password">Пароль</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
+        <label for="inputPassword" class="sr-only mt-2">Пароль</label>
+        <input type="password" id="inputPassword" name="user_password" class="form-control" placeholder="Пароль" required>
         </div>
         <div class="form-group">
         <div class="checkbox mb-3">

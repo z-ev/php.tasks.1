@@ -17,17 +17,10 @@ return [
         'action' => 'register',
     ],
 
-    'account/create' => [
-        'controller' => 'user',
-        'action' => 'reg',
-    ],
-
     'account/cabinet' => [
         'controller' => 'account',
         'action' => 'cabinet',
     ],
-
-
 
 
 ];
