@@ -71,7 +71,7 @@
                             <input type="text" value="<?=$user_info['fio']?>" name="change_fio" class="form-control" placeholder="Фамилия">
                          </div>
                          <div class="form-group">
-                             <button type="submit" class="btn btn-lg btn-primary btn-block">Сохранить</button>
+                             <button type="submit" class="btn btn-md btn-primary btn-block">Сохранить</button>
                          </div>
                         </form>
                         <form action="/account/login" method="POST" class="form-signin">
@@ -79,7 +79,7 @@
                             <input type="password" id="change_pass" class="form-control" placeholder="Пароль" name="change_pass" required>
                             </div>
                             <div class="form-group">
-                            <button type="submit" class="btn btn-lg btn-primary btn-block">Сменить пароль</button>
+                            <button type="submit" class="btn btn-md btn-primary btn-block">Сменить пароль</button>
                             </div>
                         </form>
                     <?php endif; ?>
@@ -93,20 +93,39 @@
 
 </div>
 
-
-
-
-
-
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Все заказы</h3>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Все заказы</h3>
+            </div>
+            <ul class="list-group list-group-flush">
+                <?php foreach ($orders_all as $order): ?>
+                    <li class="list-group-item"><?=$order['fio']?> - <?=$order['login']?> (<?=$order['email']?>) $<?=$order['price']?></li>
+                <?php endforeach; ?>
+            </ul>
         </div>
-    <ul class="list-group list-group-flush">
-        <?php foreach ($orders_all as $order): ?>
-        <li class="list-group-item"><?=$order['fio']?> - <?=$order['login']?> (<?=$order['email']?>) $<?=$order['price']?></li>
-        <?php endforeach; ?>
-    </ul>
+
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Все пользователи</h3>
+            </div>
+            <ul class="list-group list-group-flush">
+                <?php foreach ($users_all as $user): ?>
+                    <li class="list-group-item"><?=$user['fio']?> - <?=$user['login']?> (<?=$user['email']?>)</li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 <?php else: ?>
     <div class="jumbotron">
         <h1>Личный кабинет</h1>
@@ -120,5 +139,4 @@
 <?php endif; ?>
 
 
-</div>
 

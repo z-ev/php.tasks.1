@@ -40,7 +40,7 @@ if ($vars['email']) { $email = $vars['email']; }
                         <input id="user_email" name="user_email" type="text" required class="user_email form-control" placeholder="Почта" value="<?=$email?>">
                         </div>
                             <div class="form-group">
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
+                        <input type="password" id="inputPassword"  name="user_password"  class="form-control" placeholder="Пароль" required>
                         </div>
 
                        <!-- <div class="checkbox mb-3">
@@ -64,12 +64,5 @@ if ($vars['email']) { $email = $vars['email']; }
 
     </div>
 
-
-
-<?php
-
-//if ($vars) { print_r($vars); }
-
-?>
 </div>
 

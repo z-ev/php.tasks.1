@@ -1,3 +1,4 @@
+
 --
 -- Структура таблицы `orders`
 --
@@ -37,8 +38,8 @@ CREATE TABLE `users` (
   `email` varchar(55) DEFAULT NULL,
   `login` varchar(55) DEFAULT NULL,
   `fio` varchar(255) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `salt` varchar(255) NOT NULL
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `salt` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -46,12 +47,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `login`, `fio`, `password`, `salt`) VALUES
-(1, 'aa@aa.ru', 'user1', 'Иванов Иван Иванович', '3ae22609aa53d697fdfe789056215ee6', '5f2485e5b08c1'),
-(2, 'aa@aa.ru', 'user2', 'Петров Петр Иванович', '3ae22609aa53d697fdfe789056215ee6', '5f2485e5b08c1'),
-(3, 'cc@cc.ru', 'user3', 'Сидоров Михаил Иванович', '3ae22609aa53d697fdfe789056215ee6', '5f2485e5b08c1'),
-(4, 'dd@dd.ru', 'user4', 'Ермаков Николай Иванович', '3ae22609aa53d697fdfe789056215ee6', '5f2485e5b08c1'),
-(5, 'cc@cc.ru', 'user5', 'Ермаков Николай Иванович', '3ae22609aa53d697fdfe789056215ee6', '5f2485e5b08c1'),
-(6, 'cc@cc.ru', 'user6', 'Ермаков Николай Иванович', '3ae22609aa53d697fdfe789056215ee6', '5f2485e5b08c1');
+(1, 'aa@aa.ru', 'user1', 'Иванов Иван Иванович', 'a96be294f0deed889bd311a8ef997396', '5f2548619eefb'),
+(2, 'aa@aa.ru', 'user2', 'Семенов Семен Андреевич', '4821c4fdac1fb288cee70f6c72cbc912', '5f254873ee24b'),
+(3, 'bb@bb.ru', 'user3', 'Петров Александр Николаевич', '20a1aa7dad8c66221b6dab35520aeabb', '5f2548905ae72'),
+(4, 'cc@cc.ru', 'user4', 'Сидоров Петр Иванович', '2c302a1ac856e2a4ee76a61f7132bb40', '5f2548b17583f'),
+(5, 'cc@cc.ru', 'user5', 'Киркоров Юрий Викторович', 'eb6cf04079d31fa9b32758f6070aa0af', '5f2548d9b1449'),
+(36, 'ee@ee.ru', 'user6', 'Галанов Никита Васильевич', 'ad72d740f1c72f940ace40987ae8eea1', '5f25495500951'),
+(37, 'hh@hh.ru', 'user7', 'Жданов Алексей Алексеевич', 'ab903f30387625f5ed8d6c61ee720540', '5f2549687a671'),
+(38, 'hh@hh.ru', 'user8', 'Николаев Виктор Андреевич', '412fde3664ec8759ac648baa34404165', '5f2549899f718');
 
 --
 -- Индексы сохранённых таблиц
@@ -83,5 +86,5 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+COMMIT;
