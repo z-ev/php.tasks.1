@@ -9,7 +9,10 @@ class Router {
     protected $routes = [];
     protected $params = [];
 
-
+    /**
+     * Router constructor.
+     * Добавляем в routes маршруты из файла роутов
+     */
     public function __construct()
     {
         $arr = require 'app/config/routes.php';
@@ -18,28 +21,21 @@ class Router {
         }
     }
 
-    private function getURI()
-    {
-        $uri = '';
-
-        if (!empty($_SERVER['REQUEST_URI'])) {
-            $uri = $_SERVER['REQUEST_URI'];
-        }
-
-        if (($cutoff = strpos($uri, '?')) !== false) {
-            $uri = substr($uri, 0, $cutoff);
-        }
-
-        return trim($uri, '/');
-    }
-
-
+    /**
+     * Добавляем маршруты в routes[]
+     * @param $route
+     * @param $params
+     */
     public function add($route, $params)
     {
         $route = '#^'.$route.'$#';
         $this->routes[$route] = $params;
     }
 
+    /**
+     * Сверяем текущий url с маршутами
+     * @return bool
+     */
     public function match()
     {
         $url = trim($_SERVER['REQUEST_URI'], '/');
@@ -52,6 +48,10 @@ class Router {
         return false;
     }
 
+    /**
+     * Если url соответсвует маршруту то проверяем налчие класса и метода, создаем его экземпляр и обращаемся к методу.
+     * В противном случае выводим сообщение об ошибки 404.
+     */
     public function run()
     {
 
