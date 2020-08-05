@@ -28,7 +28,7 @@
                 <li role="presentation"><a href="/">Главная</a></li>
                 <?php if (app\models\Account::isAuthorized()): ?>
                     <li role="presentation"><a href="/account/cabinet">Кабинет</a></li>
-                    <li role="presentation"><form action="/account/login" method="POST"><input type="hidden" name="act" value="logout"><button type="submit" class="btn btn-danger">Выход</button></form></li>
+                    <li role="presentation"><form action="/account/login" method="POST"><input type="hidden" name="logout" value="logout"><button type="submit" class="btn btn-danger">Выход</button></form></li>
                 <?php else: ?>
                     <li role="presentation"><a href="/account/login">Вход</a></li>
                     <li role="presentation"><a href="/account/register">Регистрация</a></li>
