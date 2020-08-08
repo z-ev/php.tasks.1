@@ -6,7 +6,7 @@ use app\core\Model;
 
 class Account extends Model
 {
-
+    public $user_id;
     /**
      * Меняем пароль пользователя
      * @param $pass
@@ -75,8 +75,10 @@ class Account extends Model
         ];
 
         $create_user = $this->db->query($query, $params);
+
         // Пытаемся зарегистрировать пользователя
-        if ($create_user) { return $params;} else { return $params;}
+        if ($create_user) {return $params;} else { return $params;}
+
     }
 
     /**
@@ -148,7 +150,6 @@ class Account extends Model
             // Если хэш пароля совпадает с хэшем в базе то...
             $this->is_authorized = true;
             $this->user_id = $this->user['id'];
-            $this->user_g = $this->user['user_g'];
             $this->saveSession($remember);
         }
 
@@ -198,6 +199,7 @@ class Account extends Model
     {
         if (!empty($_SESSION["user_id"])) {
             unset($_SESSION["user_id"]);
+            return true;
         }
 
     }
@@ -222,7 +224,7 @@ class Account extends Model
      */
     public function getUserInfo()
     {
-        $query = 'SELECT login, email, fio FROM `users` WHERE id='.$_SESSION["user_id"];
+        $query = 'SELECT id, login, email, fio FROM `users` WHERE id='.$_SESSION["user_id"];
         $user_info = $this->db->query($query);
         $user_info = $user_info->fetch();
 
@@ -283,4 +285,9 @@ class Account extends Model
         return $result;
     }
 
+    public function killUser($id)
+    {
+        $result = $this->db->query('DELETE FROM `users` WHERE id='.$id);
+        if ($result) { return true;} else {return false;}
+    }
 }

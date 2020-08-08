@@ -16,5 +16,9 @@ abstract class Model {
     {
 		$this->db = new Db;
 	}
+    public function __destruct()
+    {
+        $this->db = null;
+    }
 
 }

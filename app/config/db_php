@@ -1,8 +1,9 @@
 <?php
 
 return [
-	'host' => 'localhost',
-	'name' => 'XXX',
-	'user' => 'XXX',
-	'password' => 'XXX',
+	'db_host' => '127.0.0.1',
+    'db_port' => '3306',
+	'db_name' => 'xxx',
+	'db_user' => 'xxx',
+	'db_password' => 'xxx',
 ];
