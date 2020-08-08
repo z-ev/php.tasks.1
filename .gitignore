@@ -3,7 +3,7 @@
 .vagrant
 .phpstorm.meta.php
 _ide_helper.php
-
+/vendor
 /app/config/db.php
 
 .phpunit.result.cache
