@@ -5,7 +5,7 @@
 _ide_helper.php
 /vendor
 /app/config/db.php
-
+/doc
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
