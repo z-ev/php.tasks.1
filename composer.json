@@ -7,7 +7,7 @@
         }
 
     },
-    "require-dev": {
+    "require": {
         "phpunit/phpunit": "^9.3"
     }
 }
