@@ -12,7 +12,7 @@ class MainController extends Controller {
 	    // Получаем данные из модели (список заказов)
         $vars = $this->model->getAllOrders();
         // Отображаем страницу
-   		$this->view->render('Добро пожаловать', $vars);
+   		$this->view->render('Welcome', $vars);
 	}
 
 }

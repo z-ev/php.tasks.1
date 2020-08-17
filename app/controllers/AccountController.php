@@ -41,17 +41,17 @@ class AccountController extends Controller {
 
             // Если пользователь авторизован то авторизуем и редирект на кабинет
             if ($user_login) {
-                $messages .= '<div class="alert alert-success" role="alert">Добро пожаловать!</div>';
+                $messages .= '<div class="alert alert-success" role="alert">Welcome!</div>';
                 $this->view->redirect('/account/cabinet');
             } else
-                {$messages .= '<div class="alert alert-danger" role="alert">Не верный логин или пароль</div>';}
+                {$messages .= '<div class="alert alert-danger" role="alert">Invalid username or password</div>';}
 
             // Если пользователь не авторизован то отправляем ему сообщение, логин и рисуем страницу авторизации
             $vars = [
                 'messages' => $messages,
                 'login' => $user_l,
             ];
-            $this->view->render('login', $vars);
+            $this->view->render('Sign in', $vars);
 
         } else {
                 // Если $_REQUEST пустой то отображаем страницу с чистыми полями
@@ -61,7 +61,7 @@ class AccountController extends Controller {
                 'email' => '',
                 'password' => '',
                 ];
-		        $this->view->render('Вход', $vars);
+		        $this->view->render('Sign in', $vars);
                 }
 	}
 
@@ -87,17 +87,17 @@ class AccountController extends Controller {
 
             if ($check_login) {
                 $errors = true;
-                $messages .= '<div class="alert alert-danger" role="alert">Пользователь: '.$user_l.' - уже существует.</div>';
+                $messages .= '<div class="alert alert-danger" role="alert">User: '.$user_l.' - already exists.</div>';
             }
-            else {$messages .= '<div class="alert alert-success" role="alert">Пользователь: '.$user_l.' -cвободен для регистрации</div>';}
+            else {$messages .= '<div class="alert alert-success" role="alert">Username: '.$user_l.' free for registration</div>';}
 
-            if (!$check_email) {$errors = true; $messages .=  '<div class="alert alert-danger" role="alert">Введите корректный email</div>';}
+            if (!$check_email) {$errors = true; $messages .=  '<div class="alert alert-danger" role="alert">Please enter a valid email</div>';}
 
             // Если ошибок нет то регестрируем пользователя
             if (!$errors) {$reg_user = $this->model->regUser($user_l, $user_e, $user_p);};
 
             // Если пользователь создан то авторизуем и редирект на кабинет
-            if ($reg_user) {$messages = '<div class="alert alert-success" role="alert">Пользователь создан</div>';
+            if ($reg_user) {$messages = '<div class="alert alert-success" role="alert">User created</div>';
             if ($user_login = $this->model->authorize($user_l, $user_p)) { $this->view->redirect('/account/cabinet');}
             }
 
@@ -108,7 +108,7 @@ class AccountController extends Controller {
                 'email' => $user_e,
                 'password' => $user_p,
             ];
-            $this->view->render('Регистрация', $vars);
+            $this->view->render('Sign up', $vars);
         } else {
             // Если $_REQUEST пустой то отображаем страницу с чистыми полями
             $vars = [
@@ -117,7 +117,7 @@ class AccountController extends Controller {
                 'email' => '',
                 'password' => '',
             ];
-            $this->view->render('Регистрация', $vars);
+            $this->view->render('Sign up', $vars);
         }
 
 	}
@@ -144,10 +144,10 @@ class AccountController extends Controller {
                 'users0' => $users0,
                 'users2' => $users2,
             ];
-            $this->view->render('Личный кабинет', $vars);
+            $this->view->render('Personal account', $vars);
         } else {
             // Если пользователь не авторизован то данные не передаем
-            $this->view->render('Личный кабинет');
+            $this->view->render('Personal account');
         }
 
     }
