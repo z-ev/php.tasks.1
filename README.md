@@ -1,33 +1,37 @@
 # Test task №1
 * PHP
 ```sh
-Создать страницу с авторизацией пользователя: логин и пароль и реализовать в ней:
-возможность регистрации пользователя (email, логин, пароль, ФИО).
-При входе в "личный кабинет" возможность сменить пароль и ФИО.
-Использовать "чистый" PHP 5.6 и выше (без фреймворков) и MySQL 5.5 и выше, дизайн не важен, верстка тоже простая. 
-Наворотов не нужно, хотим посмотреть просто Ваш код.
+Create a application with users authorization.
+Implement the ability to register a user (email, login, password, full name). 
+When you auth your "personal account" you can change your password and full name.
+
+Use "pure" PHP 5.6 and higher (without frameworks) and MySQL 5.5 and higher. 
+Design is not important, layout is also simple.
+Deadline: 2 days.
 ```
 * SQL
 ```sh
-Есть 2 таблицы
-таблица пользователей:
+There are 2 tables.
+users table:
+
 users
 ----------
 `id` int(11)
 `email` varchar(55)
 `login` varchar(55)
 
-и таблица заказов
+and order table:
+
 orders
 --------
 `id` int(11)
 `user_id` int(11)
 `price` int(11)
 
-Необходимо составить запрос, который выведет:
-* Cписок email'лов встречающихся более чем у одного пользователя.
-* Cписок логинов пользователей, которые не сделали ни одного заказа.
-* Cписок логинов пользователей которые сделали более двух заказов.
+You will need compose a query that will display:
+* A list of email arddresses those have more than one user.
+* List of usernames who have not made a single order.
+* List of usernames who have made more than 2 orders.
 ```
 ### Requirements
    The requirements to application is:
